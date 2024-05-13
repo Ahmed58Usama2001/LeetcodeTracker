@@ -1,20 +1,18 @@
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        vector<int> indecies;
+        unordered_map<int,int> hash;
+
+        for(int i=0;i<nums.size();i++)
+        hash[nums[i]]=i;
 
         for(int i=0;i<nums.size();i++)
         {
-            for(int j=0;j<nums.size();j++)
-            {
-                if(target-nums[i]==nums[j] && i!=j)
-                {
-                    indecies.push_back(i);
-                    indecies.push_back(j);
-                    return indecies;
-                }
-            }
+            int complement=target-nums[i];
+            if(hash.find(complement)!=hash.end() && hash[complement]!=i)
+            return {i,hash[complement]};
         }
-        return indecies;
+
+        return {};
     }
 };
