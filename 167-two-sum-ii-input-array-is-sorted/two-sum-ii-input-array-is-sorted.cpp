@@ -6,15 +6,16 @@ public:
 
      while(start<end)
      {
-        if(numbers[start]+numbers[end]==target)
+        int sum=numbers[start]+numbers[end];
+        if(sum==target)
             return {start+1,end+1};
-        else if(numbers[start]+numbers[end]>target)
+        else if(sum>target)
             end--;
         else
         start++;
      }
      
      
-        return numbers;
+        return {-1,-1};
     }
 };
