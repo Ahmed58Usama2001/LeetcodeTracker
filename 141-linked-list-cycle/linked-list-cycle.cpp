@@ -12,9 +12,6 @@ public:
         ListNode* slow=head;
         ListNode* fast=head;
 
-        // if(!head)
-        // return false;
-
         while(slow && fast && slow->next && fast->next)
         {
             slow=slow->next;
