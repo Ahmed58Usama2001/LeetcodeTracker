@@ -1,43 +1,44 @@
+#include <iostream>
+#include <cctype>
+
 class Solution {
 public:
     int evalRPN(vector<string>& tokens) {
-        stack<string> s;
-        int x,y;
-
+        stack<int> nums;
         for(string c : tokens)
         {
-            if(c=="+")
+            if(c == "+" ||
+            c == "-" ||
+            c == "*" ||
+            c == "/")
             {
-                y=stoi(s.top()); s.pop();
-                x=stoi(s.top()); s.pop();
-
-                s.push(to_string(x+y));
-            }
-            else if(c=="-")
-            {
-                y=stoi(s.top()); s.pop();
-                x=stoi(s.top()); s.pop();
-
-                s.push(to_string(x-y));
-            }
-            else if(c=="*")
-            {
-                y=stoi(s.top()); s.pop();
-                x=stoi(s.top()); s.pop();
-
-                s.push(to_string(x*y));
-            }
-            else if(c=="/")
-            {
-                y=stoi(s.top()); s.pop();
-                x=stoi(s.top()); s.pop();
-
-                s.push(to_string(x/y));
+                int second = nums.top();
+                nums.pop();
+                int first = nums.top();
+                nums.pop();
+                if(c == "+")
+                {
+                    first += second;
+                }
+                else if(c == "-")
+                {
+                    first -= second;
+                }
+                else if(c == "*")
+                {
+                    first *= second;
+                }
+                else
+                {
+                    first /= second;
+                }
+                nums.push(first);
             }
             else
-            s.push(c);
+            {
+                nums.push(stoi(c));
+            }
         }
-
-        return stoi(s.top());
+        return nums.top();
     }
 };
