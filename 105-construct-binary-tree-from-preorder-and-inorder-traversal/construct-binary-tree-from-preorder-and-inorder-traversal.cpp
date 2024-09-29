@@ -28,7 +28,7 @@ public:
         int data=preorder.front();
         preorder.pop();
 
-        for(int split=0;split<=inorder_end;split++)
+        for(int split=inorder_start;split<=inorder_end;split++)
         {
             if(inorder[split]==data)
             {
